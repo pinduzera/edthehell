@@ -1,0 +1,60 @@
+baseURL = 'https://edhell.org/'
+locale = 'pt-br'
+title = '˚₊‧꒰ა welcome to my digi-garden ໒꒱ ‧₊˚'
+copyright = '© 2026 Tio Pindas'
+
+[menus]
+  [[menus.main]]
+    name = '^__^"'
+    pageRef = '/'
+    weight = 1
+
+
+  [[menus.main]]
+    name = 'open-source'
+    pageRef = '/open-source'
+    weight = 2
+
+  [[menus.main]]
+    name = 'posts'
+    pageRef = '/posts'
+    weight = 3
+
+  [[menus.main]]
+    name = 'me'
+    pageRef = '/me'
+    weight = 4
+
+  [[menus.main]]
+    name = 'rss'
+    pageRef = '/index.xml'
+    weight = 5    
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.160.0'
+
+[params]
+  [params.author]
+    email = 'ehellas@proton.me'
+    name = 'Ed The Hell'
+
+[security]
+  allowContent = ['^text/html$']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html', 'rss']
+  taxonomy = ['html']
+  term = ['html']
+
+[services]
+  [services.rss]
+    limit = 42
+
