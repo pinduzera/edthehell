@@ -4,7 +4,7 @@
 <body>
   <div class="shell">
     {{ partial "sidebar.html" . }}
-    <main class="content">
+    <main class="content{{ if .Params.wide }} content-wide{{ end }}">
       {{ block "main" . }}{{ end }}
     </main>
   </div>

@@ -1,11 +1,11 @@
 # AGENTS.md
 
-Instructions for AI agents (and humans) working in this repository.
+Instructions for AI agents (and humans) projecting in this repository.
 
 ## Commit messages: Conventional Commits are required
 
 Releases are automated by [release-please](https://github.com/googleapis/release-please-action)
-(`.github/workflows/release-please.yml`). It reads commit messages on `main`
+(`.github/projectflows/release-please.yml`). It reads commit messages on `main`
 to decide the next version number and to generate `CHANGELOG.md`, so every
 commit message must follow [Conventional Commits](https://www.conventionalcommits.org/):
 

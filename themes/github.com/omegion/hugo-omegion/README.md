@@ -48,7 +48,7 @@ And set `theme: "hugo-omegion"` in your site config.
 Hugo does **not** automatically inherit a theme's own config — only
 `layouts/`, `assets/`, `archetypes/`, `static/`, `data/`, `i18n/` are
 picked up automatically from an imported module or theme. The following
-config is required for this theme to work correctly and must be set in
+config is required for this theme to project correctly and must be set in
 your own site. Copy it from
 [`exampleSite/config/_default`](exampleSite/config/_default):
 
@@ -71,7 +71,7 @@ your own site. Copy it from
   free choice. See
   [`exampleSite/config/_default/taxonomies.toml`](exampleSite/config/_default/taxonomies.toml).
 
-The full [`exampleSite/`](exampleSite) is a working site built on this
+The full [`exampleSite/`](exampleSite) is a projecting site built on this
 theme — the fastest way to get started is to copy its `config/` and
 `content/` structure into your own site and edit from there.
 
@@ -95,7 +95,7 @@ tags: ["tag-one", "tag-two"]
 Set `groupByYear: true` in `content/posts/_index.md`'s `cascade` to group
 the posts list page by year.
 
-### `content/projects/` — project / work showcase
+### `content/projects/` — project / project showcase
 
 ```yaml
 ---
@@ -135,7 +135,7 @@ All under `params:` (or `[params]`) in your site or language config:
 | `enableTableOfContents` | `true` | Show a table of contents on posts (per-page override: `showTableOfContents` front matter). |
 | `enableUpdatedDate` | `true` | Show an "Updated" date at the bottom of posts and projects when the file's git-derived last-modified date differs from its `date` (per-page override: `showUpdatedDate` front matter). Requires `enableGitInfo: true`. |
 | `homepage.writingCount` | `6` | How many recent posts to show on the homepage. |
-| `homepage.workCount` | `6` | How many recent projects to show on the homepage. |
+| `homepage.projectCount` | `6` | How many recent projects to show on the homepage. |
 | `search.recentPostsCount` | `3` | Recent posts shown in the empty search state. |
 | `search.recentProjectsCount` | `3` | Recent projects shown in the empty search state. |
 
@@ -148,7 +148,7 @@ your own in your site's `static/favicon/`.
 ## Releases
 
 Every merge to `main` automatically tags and publishes a new GitHub release
-([workflow](.github/workflows/release.yml)). It defaults to a patch bump;
+([projectflow](.github/projectflows/release.yml)). It defaults to a patch bump;
 include `#minor` or `#major` in the commit/PR title for a bigger bump, or
 `[skip release]` to skip releasing entirely.
 

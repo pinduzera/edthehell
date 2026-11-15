@@ -16,7 +16,7 @@ params:
   enableTableOfContents: true
   homepage:
     writingCount: 6
-    workCount: 4
+    projectCount: 4
   search:
     recentPostsCount: 3
     recentProjectsCount: 3

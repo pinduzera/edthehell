@@ -1,8 +1,8 @@
 {{ define "main" }}
   {{ $writing := (where site.RegularPages "Type" "posts").ByDate.Reverse }}
-  {{ $work := (where site.RegularPages "Type" "projects").ByDate.Reverse }}
+  {{ $project := (where site.RegularPages "Type" "projects").ByDate.Reverse }}
   {{ $writingCount := site.Params.homepage.writingCount | default 6 }}
-  {{ $workCount := site.Params.homepage.workCount | default 6 }}
+  {{ $projectCount := site.Params.homepage.projectCount | default 6 }}
 
   <div class="section">
     <div class="section-label">{{ i18n "writing" }}</div>
@@ -14,14 +14,14 @@
     {{ end }}
   </div>
 
-  {{ if $work }}
+  {{ if $project }}
   <div class="section">
-    <div class="section-label">{{ i18n "work" }}</div>
-    {{ range first $workCount $work }}
-      {{ partial "work-row.html" . }}
+    <div class="section-label">{{ i18n "project" }}</div>
+    {{ range first $projectCount $project }}
+      {{ partial "project-row.html" . }}
     {{ end }}
-    {{ if gt (len $work) $workCount }}
-      <a class="more-link" href="{{ "projects/" | relLangURL }}">{{ i18n "allWork" }} <span class="arrow">&#8594;</span></a>
+    {{ if gt (len $project) $projectCount }}
+      <a class="more-link" href="{{ "projects/" | relLangURL }}">{{ i18n "allProjects" }} <span class="arrow">&#8594;</span></a>
     {{ end }}
   </div>
   {{ end }}

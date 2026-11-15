@@ -1,0 +1,41 @@
+{{ define "main" }}
+  <div class="page-header">
+    <h1>{{ .Title | emojify }}</h1>
+    {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ with .Params.sections }}
+  <div class="links-grid">
+    {{ range . }}
+    <section class="section links-group">
+      <div class="section-label">{{ .title | emojify }}</div>
+      {{ range .links }}
+      {{- $url := .url -}}
+      {{- $external := and $url (not (hasPrefix $url "/")) -}}
+      {{- if $url -}}
+      <a class="link-row-ext" href="{{ $url | safeURL }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
+      {{- else -}}
+      <div class="link-row-ext link-row-static">
+      {{- end }}
+        <div class="link-row-ext-inner">
+          <span class="link-row-title">{{ .title | emojify }}</span>
+          {{- with .description }}
+          <div class="link-row-desc">{{ . | emojify }}</div>
+          {{- end }}
+        </div>
+        {{- if $external }}
+        <span class="ext-arrow">&#8599;</span>
+        {{- end }}
+      {{- if $url }}
+      </a>
+      {{- else }}
+      </div>
+      {{- end }}
+      {{ end }}
+    </section>
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="muted">{{ i18n "nothingHere" }}</p>
+  {{ end }}
+{{ end }}

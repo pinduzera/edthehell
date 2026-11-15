@@ -22,7 +22,7 @@ way until you need it.
 
 ### A minimal footprint
 
-No JavaScript framework, no build step beyond Hugo Pipes. Just enough script
+No JavaScript frameproject, no build step beyond Hugo Pipes. Just enough script
 to handle the sidebar, search, and this table of contents.
 
 ### Dark and light mode

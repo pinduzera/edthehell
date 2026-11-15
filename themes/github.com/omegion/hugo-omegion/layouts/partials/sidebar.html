@@ -30,8 +30,16 @@
       <a href="{{ "" | relLangURL }}">{{ partial "icon.html" "home" }}<span>{{ i18n "home" }}</span></a>
       {{- end }}
       <a href="{{ "about" | relLangURL }}">{{ partial "icon.html" "book" }}<span>{{ i18n "about" }}</span></a>
+      {{- with site.GetPage "/cool-links" }}
+      {{- /* Label falls back to the page's own title, so the tab can never end
+             up as an icon with no text if a translation is missing. */}}
+      <a href="{{ .RelPermalink }}">{{ partial "icon.html" "link" }}<span>{{ i18n "coolLinks" | default (.Params.navTitle | default .Title) }}</span></a>
+      {{- end }}
       {{- range site.Params.author.links }}
       <a href="{{ .url }}" target="_blank" rel="me noopener">{{ partial "icon.html" .icon }}<span>{{ .name }}</span></a>
+      {{- end }}
+      {{- with site.Params.contact.email }}
+      <a href="mailto:{{ . }}">{{ partial "icon.html" "mail" }}<span>{{ i18n "mailMe" | default "Mail me" }}</span></a>
       {{- end }}
       <a href="{{ with .OutputFormats.Get "rss" }}{{ .RelPermalink }}{{ else }}{{ "index.xml" | relLangURL }}{{ end }}">{{ partial "icon.html" "rss" }}<span>RSS</span></a>
     </div>

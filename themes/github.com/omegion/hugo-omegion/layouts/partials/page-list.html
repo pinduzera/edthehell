@@ -5,14 +5,14 @@
       <div class="section">
         <div class="section-label">{{ .Key }}</div>
         {{ range .Pages }}
-          {{ if eq .Type "projects" }}{{ partial "work-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
+          {{ if eq .Type "projects" }}{{ partial "project-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
         {{ end }}
       </div>
     {{ end }}
   {{ else }}
     <div class="section">
       {{ range (.Paginate $pages).Pages }}
-        {{ if eq .Type "projects" }}{{ partial "work-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
+        {{ if eq .Type "projects" }}{{ partial "project-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
       {{ end }}
     </div>
   {{ end }}

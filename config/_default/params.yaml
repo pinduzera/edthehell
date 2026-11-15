@@ -6,15 +6,21 @@ params:
     name: "Ed The Hell"
     links:
       - name: "GitHub"
-        url: "https://github.com/"
+        url: "https://github.com/pinduzera"
         icon: "github"
+      - name: "Steam"
+        url: "https://steamcommunity.com/id/pinduzera/"
+        icon: "steam"
+
+  contact:
+    email: "ehellas@proton.me"
 
   enableSearch: true
   enableTableOfContents: true
 
   homepage:
     writingCount: 6
-    workCount: 4
+    projectCount: 4
 
   search:
     recentPostsCount: 3

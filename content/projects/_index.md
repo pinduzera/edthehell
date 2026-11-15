@@ -1,4 +1,4 @@
 ---
 description: Projects.
-title: Work
+title: Projects
 ---

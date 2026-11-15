@@ -1534,3 +1534,77 @@ h4 {
     font-size: 0.68rem;
     padding: 0.6rem 0 0.4rem;
 }
+
+/* -- Language switcher -- */
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--bio-text);
+    border-radius: 4px;
+    margin: 0 -0.5rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+}
+
+.lang-switch svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.lang-switch-item {
+    color: var(--muted);
+    border-radius: 3px;
+    transition: color 0.1s ease;
+}
+
+.lang-switch-item:hover {
+    color: var(--text);
+}
+
+.lang-switch-item.is-active {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Pages that opt in with `wide: true` in front matter. */
+.content-wide {
+    max-width: 940px;
+}
+
+@media (min-width: 900px) {
+    .content-wide {
+        max-width: 1000px;
+    }
+}
+
+/* -- Cool links page -- */
+
+/* Two equal columns; each group is one grid cell, filling row by row. */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 2.5rem;
+    align-items: start;
+}
+
+.links-group {
+    margin-bottom: 0;
+}
+
+/* The rows in here already carry their own separators, so the label needs no
+   extra bottom margin to hold them apart. */
+.links-group .section-label {
+    margin-bottom: 0.5rem;
+}
+
+/* One column on phones, and again on the narrow desktop range where the fixed
+   sidebar leaves too little room for two readable columns. */
+@media (max-width: 700px), (min-width: 900px) and (max-width: 1099px) {
+    .links-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+}

@@ -16,19 +16,23 @@
   translation: Início
 - id: about
   translation: Sobre mim
+- id: coolLinks
+  translation: Links Legais
+- id: mailMe
+  translation: Me escreva
 - id: tags
   translation: Tags
 - id: theme
   translation: Tema
 
 - id: writing
-  translation: Escrita
-- id: work
-  translation: Trabalho
+  translation: Posts
+- id: project
+  translation: Projetos
 - id: allPosts
   translation: Todos os posts
-- id: allWork
-  translation: Todos os trabalhos
+- id: allProjects
+  translation: Todos os projetos
 - id: nothingHere
   translation: Nada por aqui ainda.
 

@@ -14,7 +14,7 @@ content/posts/my-post/index.md       → /posts/my-post/       (English)
 content/posts/my-post/index.pt.md    → /pt/posts/my-post/    (Portuguese)
 ```
 
-`index.en.md` also works and is what blogdown writes when knitting
+`index.en.md` also projects and is what blogdown writes when knitting
 `index.en.Rmd`. The language code in the suffix must match the language key in
 `config/_default/languages.<lang>.yaml` (here: `en` and `pt`).
 
@@ -55,3 +55,22 @@ the theme's `en.yaml`, so adding a language means translating only what differs.
 
 Dates go through `time.Format` rather than `.Date.Format`, because only the
 former localizes month names.
+
+## Cool Links
+
+`content/cool-links.md` uses `layout: cool-links`, which renders the groups
+declared in its front matter as a two-column grid. To add a group, append one:
+
+```yaml
+sections:
+  - title: Board games
+    links:
+      - title: BoardGameGeek
+        url: https://boardgamegeek.com
+        description: The reference database — ratings, rules, and forums.
+```
+
+`title` and `description` support emoji, like the rest of the theme. Relative
+URLs (starting with `/`) stay in the same tab and get no external arrow;
+anything else opens in a new one. The Portuguese version is
+`content/cool-links.pt.md` — same structure, translated strings.

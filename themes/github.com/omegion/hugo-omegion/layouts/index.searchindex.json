@@ -5,7 +5,7 @@
   {
     "title": {{ $p.Title | jsonify }},
     "url": {{ $p.RelPermalink | jsonify }},
-    "date": {{ time.Format "Jan 2006" $p.Date | jsonify }},
+    "date": {{ time.Format (site.Params.listDateFormat | default "2 Jan 2006") $p.Date | jsonify }},
     "summary": {{ $p.Params.summary | default $p.Description | jsonify }},
     "section": {{ $p.Type | jsonify }},
     "tags": {{ $p.Params.tags | default (slice) | jsonify }}

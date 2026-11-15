@@ -17,6 +17,10 @@
   translation: Home
 - id: about
   translation: About me
+- id: coolLinks
+  translation: Cool Links
+- id: mailMe
+  translation: Mail me
 - id: tags
   translation: Tags
 - id: theme
@@ -24,12 +28,12 @@
 
 - id: writing
   translation: Writing
-- id: work
-  translation: Work
+- id: project
+  translation: Projects
 - id: allPosts
   translation: All posts
-- id: allWork
-  translation: All work
+- id: allProjects
+  translation: All projects
 - id: nothingHere
   translation: Nothing here yet.
 

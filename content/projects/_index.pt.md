@@ -1,4 +1,4 @@
 ---
-title: Trabalho
+title: Projetos
 description: Projetos.
 ---
