@@ -1,13 +1,17 @@
-theme: "hugo-omegion"
 # -- Site Configuration --
 
+# English stays at the site root (/), Portuguese lives under /pt/.
 defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+
 baseURL: "https://example.org/"
 enableRobotsTXT: true
 enableGitInfo: true
-paginate: 15
 summaryLength: 0
 enableEmoji: true
+
+pagination:
+  pagerSize: 15
 
 outputs:
   home: ["HTML", "RSS", "searchindex"]

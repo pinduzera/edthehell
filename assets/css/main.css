@@ -458,6 +458,40 @@ h4 {
     margin-top: 0.75rem;
 }
 
+/* -- Language switcher -- */
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--bio-text);
+    border-radius: 4px;
+    margin: 0 -0.5rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.82rem;
+}
+
+.lang-switch svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.lang-switch-item {
+    color: var(--muted);
+    border-radius: 3px;
+    transition: color 0.1s ease;
+}
+
+.lang-switch-item:hover {
+    color: var(--text);
+}
+
+.lang-switch-item.is-active {
+    color: var(--text);
+    font-weight: 600;
+}
+
 /* -- Sections & rows -- */
 
 .section {

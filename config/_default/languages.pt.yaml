@@ -1,0 +1,14 @@
+label: "Português"
+locale: "pt-br"
+weight: 2
+
+title: "Edhell's Place"
+copyright: "Ed The Hell"
+
+params:
+  description: "Um site de exemplo criado com o tema hugo-omegion."
+  # Month names are localized by time.Format, so the literal "de" stays put.
+  dateFormat: "2 de January de 2006"
+  author:
+    bio:
+      - "Lore ipsum Tio Pindas."

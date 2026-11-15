@@ -5,23 +5,23 @@
   {{ $workCount := site.Params.homepage.workCount | default 6 }}
 
   <div class="section">
-    <div class="section-label">Writing</div>
+    <div class="section-label">{{ i18n "writing" }}</div>
     {{ range first $writingCount $writing }}
       {{ partial "post-row.html" . }}
     {{ end }}
     {{ if gt (len $writing) $writingCount }}
-      <a class="more-link" href="{{ "/posts/" | relLangURL }}">All posts <span class="arrow">&#8594;</span></a>
+      <a class="more-link" href="{{ "posts/" | relLangURL }}">{{ i18n "allPosts" }} <span class="arrow">&#8594;</span></a>
     {{ end }}
   </div>
 
   {{ if $work }}
   <div class="section">
-    <div class="section-label">Work</div>
+    <div class="section-label">{{ i18n "work" }}</div>
     {{ range first $workCount $work }}
       {{ partial "work-row.html" . }}
     {{ end }}
     {{ if gt (len $work) $workCount }}
-      <a class="more-link" href="{{ "/projects/" | relLangURL }}">All work <span class="arrow">&#8594;</span></a>
+      <a class="more-link" href="{{ "projects/" | relLangURL }}">{{ i18n "allWork" }} <span class="arrow">&#8594;</span></a>
     {{ end }}
   </div>
   {{ end }}

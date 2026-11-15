@@ -1,0 +1,79 @@
+# Brazilian Portuguese UI strings.
+# Anything missing here falls back to the theme's i18n/en.yaml.
+
+- id: search
+  translation: Buscar
+- id: searchPlaceholder
+  translation: Buscar posts e projetos…
+- id: searchEmpty
+  translation: Nenhum resultado.
+- id: searchRecentPosts
+  translation: Posts recentes
+- id: searchRecentProjects
+  translation: Projetos recentes
+
+- id: home
+  translation: Início
+- id: about
+  translation: Sobre mim
+- id: tags
+  translation: Tags
+- id: theme
+  translation: Tema
+
+- id: writing
+  translation: Escrita
+- id: work
+  translation: Trabalho
+- id: allPosts
+  translation: Todos os posts
+- id: allWork
+  translation: Todos os trabalhos
+- id: nothingHere
+  translation: Nada por aqui ainda.
+
+- id: minRead
+  translation:
+    one: "{{ .Count }} min de leitura"
+    other: "{{ .Count }} min de leitura"
+- id: newer
+  translation: Mais recentes
+- id: older
+  translation: Mais antigos
+- id: updated
+  translation: Atualizado em
+
+- id: pageNotFound
+  translation: Página não encontrada
+- id: pageNotFoundDesc
+  translation: A página que você procura não existe.
+- id: backHome
+  translation: Voltar ao início
+
+- id: launched
+  translation: Lançado em
+- id: discontinued
+  translation: Descontinuado
+- id: discontinuedOn
+  translation: Descontinuado em
+- id: appStore
+  translation: App Store
+- id: website
+  translation: Site
+- id: docs
+  translation: Documentação
+- id: whyItEnded
+  translation: Por que terminou
+- id: whatILearned
+  translation: O que aprendi
+
+- id: tableOfContents
+  translation: Índice
+- id: openMenu
+  translation: Abrir menu
+- id: close
+  translation: Fechar
+- id: languageSwitcher
+  translation: Idioma
+- id: onlyAvailableIn
+  translation: Esta página ainda não foi traduzida — você vai para o índice da seção.

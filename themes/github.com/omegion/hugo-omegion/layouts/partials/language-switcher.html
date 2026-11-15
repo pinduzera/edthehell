@@ -1,0 +1,41 @@
+{{- /*
+  Renders one link per site language.
+
+  Resolution order for each language:
+    1. the page's own translation (matching filename suffix or translationKey)
+    2. that language's version of the page's section, if it exists
+    3. that language's home page
+
+  Only rendered when the site actually has more than one language.
+*/ -}}
+{{- if gt (len hugo.Sites) 1 -}}
+{{- $page := . -}}
+{{- $current := $page.Language.Lang -}}
+
+{{- $translations := dict -}}
+{{- range $page.AllTranslations -}}
+  {{- $translations = merge $translations (dict .Language.Lang .RelPermalink) -}}
+{{- end -}}
+
+<nav class="lang-switch" aria-label="{{ i18n "languageSwitcher" }}">
+  {{ partial "icon.html" "globe" }}
+  {{- range hugo.Sites -}}
+    {{- $s := . -}}
+    {{- $lang := .Language.Lang -}}
+    {{- $label := .Language.Label | default (upper $lang) -}}
+    {{- if eq $lang $current -}}
+  <span class="lang-switch-item is-active" aria-current="true" lang="{{ $lang }}">{{ $label }}</span>
+    {{- else -}}
+      {{- $href := index $translations $lang -}}
+      {{- $hasTranslation := ne $href nil -}}
+      {{- if not $href -}}
+        {{- if not $page.IsHome -}}
+          {{- with $s.GetPage $page.Section -}}{{- $href = .RelPermalink -}}{{- end -}}
+        {{- end -}}
+        {{- if not $href -}}{{- $href = $s.Home.RelPermalink -}}{{- end -}}
+      {{- end -}}
+  <a class="lang-switch-item" href="{{ $href }}" lang="{{ $lang }}" hreflang="{{ $lang }}"{{ if not $hasTranslation }} title="{{ i18n "onlyAvailableIn" (dict "Language" $label) }}"{{ end }}>{{ $label }}</a>
+    {{- end -}}
+  {{- end -}}
+</nav>
+{{- end -}}

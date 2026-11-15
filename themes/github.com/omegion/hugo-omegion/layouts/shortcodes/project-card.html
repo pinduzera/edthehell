@@ -10,8 +10,8 @@
   <img class="project-card-logo" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
   {{- end }}
   <div class="link-row-ext-inner">
-    <span class="project-card-title" style="view-transition-name: vt-title-{{ $project.File.UniqueID }}">{{ $project.Title }}{{ if $project.Params.discontinued }} <span class="badge">Discontinued</span>{{ end }}</span>
-    <div class="project-card-meta">Launched {{ $project.Date.Format "January 2006" }}</div>
+    <span class="project-card-title" style="view-transition-name: vt-title-{{ $project.File.UniqueID }}">{{ $project.Title }}{{ if $project.Params.discontinued }} <span class="badge">{{ i18n "discontinued" }}</span>{{ end }}</span>
+    <div class="project-card-meta">{{ i18n "launched" }} {{ time.Format "January 2006" $project.Date }}</div>
     {{- with $project.Params.summary }}
     <div class="link-row-desc">{{ . }}</div>
     {{- end }}

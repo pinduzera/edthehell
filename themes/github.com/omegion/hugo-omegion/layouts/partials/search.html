@@ -1,13 +1,14 @@
 <div id="search-modal" class="search-modal" hidden>
   <div class="search-backdrop" id="search-backdrop"></div>
-  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="{{ i18n "search" }}">
     <div class="search-input-row">
       {{ partial "icon.html" "search" }}
-      <input id="search-input" type="text" placeholder="Search posts and projects&hellip;" autocomplete="off"
-        data-index-url="{{ "/index.json" | relURL }}"
+      <input id="search-input" type="text" placeholder="{{ i18n "searchPlaceholder" }}" autocomplete="off"
+        data-index-url="{{ "index.json" | relLangURL }}"
+        data-labels='{{ dict "empty" (i18n "searchEmpty") "posts" (i18n "searchRecentPosts") "projects" (i18n "searchRecentProjects") | jsonify }}'
         data-recent-posts="{{ site.Params.search.recentPostsCount | default 3 }}"
         data-recent-projects="{{ site.Params.search.recentProjectsCount | default 3 }}" />
-      <button type="button" id="search-close" aria-label="Close search">{{ partial "icon.html" "close" }}</button>
+      <button type="button" id="search-close" aria-label="{{ i18n "close" | default "Close" }}">{{ partial "icon.html" "close" }}</button>
     </div>
     <div id="search-results" class="search-results"></div>
   </div>

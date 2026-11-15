@@ -7,6 +7,14 @@ export function initSearch() {
   const results = document.getElementById("search-results");
   if (!openBtn || !modal || !input || !results) return;
 
+  // UI strings come from the page (i18n), so the JS has no English baked in.
+  let labels = {};
+  try {
+    labels = JSON.parse(input.dataset.labels || "{}");
+  } catch (e) {
+    labels = {};
+  }
+
   const recentPostsCount = parseInt(input.dataset.recentPosts, 10) || 3;
   const recentProjectsCount = parseInt(input.dataset.recentProjects, 10) || 3;
   let index = null;
@@ -41,7 +49,7 @@ export function initSearch() {
 
   function render(items, label) {
     if (!items.length) {
-      results.innerHTML = '<p class="search-empty">No results.</p>';
+      results.innerHTML = `<p class="search-empty">${escapeHtml(labels.empty || "No results.")}</p>`;
       return;
     }
     const rows = items.slice(0, 20).map(renderRow).join("");
@@ -51,7 +59,7 @@ export function initSearch() {
   function renderGroups(groups) {
     const nonEmpty = groups.filter((g) => g.items.length);
     if (!nonEmpty.length) {
-      results.innerHTML = '<p class="search-empty">No results.</p>';
+      results.innerHTML = `<p class="search-empty">${escapeHtml(labels.empty || "No results.")}</p>`;
       return;
     }
     results.innerHTML = nonEmpty
@@ -63,8 +71,8 @@ export function initSearch() {
     const posts = (index || []).filter((item) => item.section === "posts").slice(0, recentPostsCount);
     const projects = (index || []).filter((item) => item.section === "projects").slice(0, recentProjectsCount);
     renderGroups([
-      { label: "Recent posts", items: posts },
-      { label: "Recent projects", items: projects },
+      { label: labels.posts || "Recent posts", items: posts },
+      { label: labels.projects || "Recent projects", items: projects },
     ]);
   }
 

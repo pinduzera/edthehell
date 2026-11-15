@@ -1,0 +1,21 @@
+# Params shared by every language. Anything that needs translating belongs in
+# the per-language files (languages.en.yaml, languages.pt.yaml) instead.
+
+params:
+  author:
+    name: "Ed The Hell"
+    links:
+      - name: "GitHub"
+        url: "https://github.com/"
+        icon: "github"
+
+  enableSearch: true
+  enableTableOfContents: true
+
+  homepage:
+    writingCount: 6
+    workCount: 4
+
+  search:
+    recentPostsCount: 3
+    recentProjectsCount: 3

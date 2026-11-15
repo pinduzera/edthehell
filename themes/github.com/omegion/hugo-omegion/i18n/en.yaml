@@ -1,0 +1,80 @@
+# English UI strings. These are the fallbacks for every key the templates use;
+# other languages only need to translate the keys they want to change.
+# A site can override or extend these from its own i18n/ directory.
+
+- id: search
+  translation: Search
+- id: searchPlaceholder
+  translation: Search posts and projects…
+- id: searchEmpty
+  translation: No results.
+- id: searchRecentPosts
+  translation: Recent posts
+- id: searchRecentProjects
+  translation: Recent projects
+
+- id: home
+  translation: Home
+- id: about
+  translation: About me
+- id: tags
+  translation: Tags
+- id: theme
+  translation: Theme
+
+- id: writing
+  translation: Writing
+- id: work
+  translation: Work
+- id: allPosts
+  translation: All posts
+- id: allWork
+  translation: All work
+- id: nothingHere
+  translation: Nothing here yet.
+
+- id: minRead
+  translation:
+    one: "{{ .Count }} min read"
+    other: "{{ .Count }} min read"
+- id: newer
+  translation: Newer
+- id: older
+  translation: Older
+- id: updated
+  translation: Updated
+
+- id: pageNotFound
+  translation: Page not found
+- id: pageNotFoundDesc
+  translation: The page you're looking for doesn't exist.
+- id: backHome
+  translation: Back home
+
+- id: launched
+  translation: Launched
+- id: discontinued
+  translation: Discontinued
+- id: discontinuedOn
+  translation: Discontinued
+- id: appStore
+  translation: App Store
+- id: website
+  translation: Website
+- id: docs
+  translation: Docs
+- id: whyItEnded
+  translation: Why it ended
+- id: whatILearned
+  translation: What I learned
+
+- id: tableOfContents
+  translation: Table of contents
+- id: openMenu
+  translation: Open menu
+- id: close
+  translation: Close
+- id: languageSwitcher
+  translation: Language
+- id: onlyAvailableIn
+  translation: This page isn't translated yet — you'll land on the section index.

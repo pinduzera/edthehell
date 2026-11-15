@@ -1,9 +1,9 @@
 {{ define "main" }}
   <div class="page-header">
-    <h1>Page not found</h1>
-    <div class="page-intro">The page you're looking for doesn't exist.</div>
+    <h1>{{ i18n "pageNotFound" }}</h1>
+    <div class="page-intro">{{ i18n "pageNotFoundDesc" }}</div>
   </div>
-  <a class="link-row" href="{{ "/" | relLangURL }}">
-    <span class="link-row-title">Back home</span>
+  <a class="link-row" href="{{ "" | relLangURL }}">
+    <span class="link-row-title">{{ i18n "backHome" }}</span>
   </a>
 {{ end }}
