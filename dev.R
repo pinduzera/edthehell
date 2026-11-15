@@ -1,3 +1,4 @@
+library("blogdown")
 options(blogdown.method = "markdown")
 options(blogdown.author = "Ed The Hell")
 options(blogdown.subdir = "posts")

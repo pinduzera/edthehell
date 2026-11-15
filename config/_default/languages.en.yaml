@@ -1,0 +1,24 @@
+locale: "en-us"
+title: "Pinda's Place"
+copyright: "Ed The Hell"
+params:
+  author:
+    name: "Ed The Hell"
+    bio:
+      - "Lore ipsum Tio Pindas."
+    links:
+      - name: "GitHub"
+        url: "https://github.com/"
+        icon: "github"
+  description: "An example site built with the hugo-omegion theme."
+  dateFormat: "2 January 2006"
+  enableSearch: true
+  enableTableOfContents: true
+  homepage:
+    writingCount: 6
+    workCount: 4
+  search:
+    recentPostsCount: 3
+    recentProjectsCount: 3
+  about:
+  
