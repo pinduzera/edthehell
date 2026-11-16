@@ -28,7 +28,12 @@ sections:
         description: You even have the song I suggest starting
   - title: Books
     links:
-      - title: The Dictionary of obscure Sorrows
+      - title: The Dictionary of obscure Sorrows.
+  - title: Movies
+    links:
+      - title: Kung Fury
+        url: https://www.youtube.com/watch?v=bS5P_LAqiVg&list=RDbS5P_LAqiVg
+        description: You can thank me later. 
 ---
 
 My collection of places I like, or any other suggestions I might want to offer. This is subject to change, and my recommendations might be presented differently in Portuguese version, you guys are not the same.
