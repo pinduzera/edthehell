@@ -18,7 +18,8 @@ sections:
         description: Our holy board gaming place, we don't leave it.
       - title: Ludopedia
         url: https://ludopedia.com.br
-        description: BGG clone, but pt-br. May be handy for local obscure games.
+        language: "pt-br"
+        description: BGG clone, but portuguese. May be handy for local obscure games.
       - title: Boardgame Arena
         url: https://boardgamearena.com
         description: We could play something, add me Pindu.

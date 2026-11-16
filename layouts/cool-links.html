@@ -19,6 +19,7 @@
       {{- end }}
         <div class="link-row-ext-inner">
           <span class="link-row-title">{{ .title | emojify }}</span>
+          {{- with .language }} <span class="link-row-lang">{{ . }}</span>{{ end }}
           {{- with .description }}
           <div class="link-row-desc">{{ . | emojify }}</div>
           {{- end }}

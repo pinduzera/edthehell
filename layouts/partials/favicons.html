@@ -1,0 +1,52 @@
+{{ $light := resources.Get (site.Params.favicon.light | default "favicon/light.png") }}
+{{ with $light }}
+  {{ $icon32 := .Resize "32x32 png" }}
+  {{ $icon16 := .Resize "16x16 png" }}
+  {{ $appleTouch := .Resize "180x180 png" }}
+  {{ $android192 := .Resize "192x192 png" }}
+  {{ $android512 := .Resize "512x512 png" }}
+
+  {{/* Dark variants are optional; without them the light icon is used for both. */}}
+  {{ $dark := resources.Get (site.Params.favicon.dark | default "favicon/dark.png") }}
+  {{ $dark32 := $icon32.RelPermalink }}
+  {{ $dark16 := $icon16.RelPermalink }}
+  {{ with $dark }}
+    {{ $dark32 = (.Resize "32x32 png").RelPermalink }}
+    {{ $dark16 = (.Resize "16x16 png").RelPermalink }}
+  {{ end }}
+
+  {{/* One link per size, with both variants in data attributes. The inline
+       script picks the href while still in <head>, so the browser fetches a
+       single icon instead of loading both and swapping after load. Later
+       toggles are handled by theme.js. */}}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ $icon32.RelPermalink }}" data-icon-theme="light" data-href-light="{{ $icon32.RelPermalink }}" data-href-dark="{{ $dark32 }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ $icon16.RelPermalink }}" data-icon-theme="light" data-href-light="{{ $icon16.RelPermalink }}" data-href-dark="{{ $dark16 }}" />
+  <script>
+    (function () {
+      var theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      document.querySelectorAll("link[data-icon-theme]").forEach(function (link) {
+        var href = link.getAttribute("data-href-" + theme);
+        if (href) {
+          link.setAttribute("href", href);
+          link.setAttribute("data-icon-theme", theme);
+        }
+      });
+    })();
+  </script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ $appleTouch.RelPermalink }}" />
+
+  {{ $manifest := dict
+    "name" site.Title
+    "short_name" site.Title
+    "icons" (slice
+      (dict "src" $android192.RelPermalink "sizes" "192x192" "type" "image/png")
+      (dict "src" $android512.RelPermalink "sizes" "512x512" "type" "image/png")
+    )
+    "theme_color" "#ffffff"
+    "background_color" "#ffffff"
+    "display" "standalone"
+  }}
+  {{ $webmanifest := resources.FromString "favicon/site.webmanifest" ($manifest | jsonify) }}
+  <link rel="manifest" href="{{ $webmanifest.RelPermalink }}" />
+{{ end }}

@@ -1,6 +1,10 @@
 function applyFaviconTheme(theme) {
   document.querySelectorAll("link[data-icon-theme]").forEach((link) => {
-    link.media = link.dataset.iconTheme === theme ? "" : "not all";
+    const href = link.dataset["href" + (theme === "dark" ? "Dark" : "Light")];
+    if (href && link.getAttribute("href") !== href) {
+      link.setAttribute("href", href);
+      link.dataset.iconTheme = theme;
+    }
   });
 }
 
