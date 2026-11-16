@@ -8,6 +8,9 @@ sections:
       - title: Jupiter Lab (Karaolidis blog)
         url: https://blog.karaolidis.com/
         description: Nick é meu amigo, ele é do linux.
+      - title: Space-Biff!
+        url: https://spacebiff.com/2025/12/10/the-old-kings-crown-2/
+        description: Provavelmente das melhores leituras de board games que já vi (eng).
   - title: Jogos de tabuleiro
     links:
       - title: BoardGameGeek
