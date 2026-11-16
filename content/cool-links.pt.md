@@ -29,6 +29,12 @@ sections:
   - title: Livros
     links:
       - title: The Dictionary of Obscure Sorrows
+  - title: Filmes
+    links:
+      - title: Kung Fury
+        url: https://www.youtube.com/watch?v=bS5P_LAqiVg&list=RDbS5P_LAqiVg
+        description: Me agradeça depois.
+
 ---
 
 Minha coletânea de locais que gosto, ou qualquer outra sugestão que eu gostaria de dar. Pode ser que mude, pode ser que a minha indicação em inglês sejam diferentes, vocês são diferentes. 
