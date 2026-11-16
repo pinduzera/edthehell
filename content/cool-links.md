@@ -25,10 +25,10 @@ sections:
         url: https://www.youtube.com/@clockworkquartet5194
       - title: Kalandra
         url: https://www.youtube.com/watch?v=_Cym2FWn4A4
-        description: You even have the song I suggest starting
+        description: You even have the song I suggest starting with.
   - title: Books
     links:
-      - title: The Dictionary of obscure Sorrows.
+      - title: The Dictionary of Obscure Sorrows
   - title: Movies
     links:
       - title: Kung Fury
