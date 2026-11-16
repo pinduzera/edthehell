@@ -7,18 +7,21 @@ sections:
     links:
       - title: Jupiter Lab (Karaolidis blog)
         url: https://blog.karaolidis.com/
+        language: en
         description: Nick é meu amigo, ele é do linux.
       - title: Space-Biff!
+        language: en
         url: https://spacebiff.com/2025/12/10/the-old-kings-crown-2/
-        description: Provavelmente das melhores leituras de board games que já vi (eng).
+        description: Minha leituras favoritas de review de board games.
   - title: Jogos de tabuleiro
     links:
       - title: BoardGameGeek
         url: https://boardgamegeek.com
+        language: en
         description: Nosso local sagrado de jogos de tabuleiro, não o abandonamos.
       - title: Ludopedia
         url: https://ludopedia.com.br
-        description: BGG, mas pt-br.
+        description: BGG só que tupiniquim.
       - title: Boardgame Arena
         url: https://boardgamearena.com
         description: Podemos jogar algo, me adicione Pindu.
@@ -32,6 +35,7 @@ sections:
   - title: Livros
     links:
       - title: The Dictionary of Obscure Sorrows
+        language: en
   - title: Filmes
     links:
       - title: Kung Fury
