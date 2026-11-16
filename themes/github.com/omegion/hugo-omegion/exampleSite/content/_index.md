@@ -1,4 +1,4 @@
 ---
 title: ""
-description: "An example site built with the hugo-omegion theme."
+description: "We read and we are free."
 ---

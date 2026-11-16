@@ -1,7 +1,7 @@
 # -- Site Configuration --
 
 defaultContentLanguage: "en"
-baseURL: "https://example.org/"
+baseURL: "https://thehellas.com/""
 enableRobotsTXT: true
 enableGitInfo: true
 paginate: 15

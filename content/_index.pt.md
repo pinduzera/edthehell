@@ -1,4 +1,4 @@
 ---
-description: Um site de exemplo criado com o tema hugo-omegion.
+description: Nós lemos e nós somos livres.
 title: ''
 ---

@@ -6,7 +6,7 @@ title: "Edhell's Place"
 copyright: "Ed The Hell"
 
 params:
-  description: "Um site de exemplo criado com o tema hugo-omegion."
+  description: "Nós lemos e nós somos livres."
   # Month names are localized by time.Format, so the literal "de" stays put.
   dateFormat: "2 de Janeiro de 2006"
   author:

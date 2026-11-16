@@ -10,7 +10,7 @@ params:
       - name: "GitHub"
         url: "https://github.com/"
         icon: "github"
-  description: "An example site built with the hugo-omegion theme."
+  description: "We read and we are free."
   dateFormat: "2 January 2006"
   enableSearch: true
   enableTableOfContents: true
