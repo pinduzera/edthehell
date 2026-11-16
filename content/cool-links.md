@@ -21,8 +21,8 @@ sections:
         description: We could play something, add me Pindu.
   - title: Music
     links:
-      - title: The Cloproject Quartet
-        url: https://www.youtube.com/@clockprojectquartet5194
+      - title: The Clockwork Quartet
+        url: https://www.youtube.com/@clockworkquartet5194
       - title: Kalandra
         url: https://www.youtube.com/watch?v=_Cym2FWn4A4
         description: You even have the song I suggest starting
