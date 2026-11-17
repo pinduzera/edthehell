@@ -1,0 +1,10 @@
+{{- $path := .Get 0 -}}
+{{- $lang := .Get 1 -}}
+{{- $url := "" -}}
+{{- range site.Sites -}}
+  {{- if eq .Language.Lang $lang -}}
+    {{- with .GetPage $path -}}{{- $url = .RelPermalink -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $url -}}{{- errorf "ref-lang: page %q not found in language %q" $path $lang -}}{{- end -}}
+{{- $url -}}
