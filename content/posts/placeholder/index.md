@@ -2,7 +2,7 @@
 title: Placeholder
 author: 'EdTheHell'
 date: '2026-11-15'
-slug: [placeholder]
+slug: placeholder
 categories: [placeholder]
 tags: [placeholder]
 ---

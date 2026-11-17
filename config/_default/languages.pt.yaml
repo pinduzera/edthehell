@@ -7,8 +7,9 @@ copyright: "Ed The Hell"
 
 params:
   description: "Nós lemos e nós somos livres."
-  # Month names are localized by time.Format, so the literal "de" stays put.
-  dateFormat: "2 de Janeiro de 2006"
+  # Go/Hugo layout tokens must stay in English ("January"); time.Format
+  # renders them using the locale above, so only the connector is literal.
+  dateFormat: "2 de January de 2006"
   author:
     bio:
       - "Nós lemos e nós somos livres."

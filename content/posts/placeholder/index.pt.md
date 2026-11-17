@@ -2,7 +2,7 @@
 title: Provisório
 author: 'EdTheHell'
 date: '2026-11-15'
-slug: [provisorio]
+slug: placeholder
 categories: [provisorio]
 tags: [provisorio]
 ---

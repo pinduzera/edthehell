@@ -13,6 +13,11 @@ enableEmoji: true
 pagination:
   pagerSize: 15
 
+# Post URLs: content/posts/<slug>/index.md -> /posts/2026/11/<slug>/
+# The date lives in front matter, so it is not repeated in the folder name.
+permalinks:
+  posts: "/posts/:year/:month/:slug/"
+
 outputs:
   home: ["HTML", "RSS", "searchindex"]
 
