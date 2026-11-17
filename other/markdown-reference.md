@@ -49,7 +49,7 @@ When the two pages are not translations of each other, use the site shortcode in
 - Fails the build with a clear message if the page does not exist in that language.
 - It takes a plain path only; use `ref`/`relref` when you also need a `#fragment`.
 
-## Things to avoid
+### Things to avoid
 
 ```md
 [Post](/posts/2026/11/placeholder/)
@@ -61,3 +61,7 @@ today but becomes ambiguous once more posts exist, so prefer the full path.
 
 The theme's link render hook opens only external hosts in a new tab, so internal
 references stay in the same tab.
+
+## rss
+
+We can disable a post/page/project from rss feed with `rss:false` at markdown's header

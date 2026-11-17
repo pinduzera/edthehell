@@ -1,6 +1,8 @@
 ---
 title: Links Legais
 layout: cool-links
+date: '2026-11-16'
+rss: false
 wide: true
 sections:
   - title: Outros blogs

@@ -2,6 +2,7 @@
 title: "About"
 Description: "This is me, and you don't want to know how I got here."
 layout: "about"
+rss: false
 ---
 
 # Who I am
