@@ -1,0 +1,23 @@
+{{- $pages := .Pages.ByDate.Reverse -}}
+{{- if .IsSection }}{{ $pages = .RegularPagesRecursive.ByDate.Reverse }}{{ end -}}
+{{ if $pages }}
+  {{ if .Params.groupByYear | default false }}
+    {{ range (.Paginate ($pages.GroupByDate "2006")).PageGroups }}
+      <div class="section">
+        <div class="section-label">{{ .Key }}</div>
+        {{ range .Pages }}
+          {{ if eq .Type "projects" }}{{ partial "project-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ else }}
+    <div class="section">
+      {{ range (.Paginate $pages).Pages }}
+        {{ if eq .Type "projects" }}{{ partial "project-row.html" . }}{{ else }}{{ partial "post-row.html" . }}{{ end }}
+      {{ end }}
+    </div>
+  {{ end }}
+  {{ partial "pagination.html" . }}
+{{ else }}
+  <p class="muted">{{ i18n "nothingHere" }}</p>
+{{ end }}
