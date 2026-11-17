@@ -62,6 +62,38 @@ today but becomes ambiguous once more posts exist, so prefer the full path.
 The theme's link render hook opens only external hosts in a new tab, so internal
 references stay in the same tab.
 
+## Images
+
+Images live in the post bundle, next to `index.md`; reference them by relative path.
+
+```md
+![alt](photo.webp)
+![alt](img/photo.webp)
+```
+
+The Markdown title becomes the caption (it renders Markdown):
+
+```md
+![alt](photo.webp "A caption with a [link](https://example.com)")
+```
+
+Wrap the image in a link to make it clickable:
+
+```md
+[![alt](photo.webp "Caption")](https://example.com)
+```
+
+Size with `width`, `height` and `class` (percentages or pixels). Standalone
+images take an attribute line beneath them; linked or inline images take the
+attributes inside the title:
+
+```md
+![alt](photo.webp "Caption")
+{width="50%"}
+
+[![alt](photo.webp "Caption {width=50%}")](https://example.com)
+```
+
 ## rss
 
 We can disable a post/page/project from rss feed with `rss:false` at markdown's header

@@ -5,6 +5,13 @@
 [goldmark.renderer]
   unsafe = true
 
+# Required so an attribute list beneath a standalone image applies to the
+# image (width, height, class) instead of the surrounding paragraph.
+[goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+  [goldmark.parser.attribute]
+    block = true
+
 [highlight]
   style = "github"
   noClasses = false

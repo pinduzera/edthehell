@@ -1050,6 +1050,18 @@ h4 {
     margin: 0 auto;
 }
 
+.prose figure {
+    margin: 1.75em 0;
+}
+
+.prose figcaption {
+    color: var(--muted);
+    font-size: 0.82em;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 0.6rem;
+}
+
 .prose hr {
     border: 0;
     border-top: 1px solid var(--border);
