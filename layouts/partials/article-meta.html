@@ -1,0 +1,14 @@
+<div class="article-meta">
+  {{- $date := .Date -}}
+  {{- $year := $date.Format "2006" -}}
+  {{- $monthNum := $date.Format "01" -}}
+  {{- $monthName := time.Format "January" $date -}}
+  {{- $connector := site.Params.dateConnector | default " " -}}
+  {{- $monthPage := site.GetPage (printf "/posts/%s/%s" $year $monthNum) -}}
+  {{- $yearPage := site.GetPage (printf "/posts/%s" $year) -}}
+  <time datetime="{{ $date.Format "2006-01-02" }}">{{ $date.Format "2" }}{{ $connector }}{{ with $monthPage }}<a href="{{ .RelPermalink }}">{{ $monthName }}</a>{{ else }}{{ $monthName }}{{ end }}{{ $connector }}{{ with $yearPage }}<a href="{{ .RelPermalink }}">{{ $year }}</a>{{ else }}{{ $year }}{{ end }}</time>
+  {{ if and (eq .Type "posts") (ne .ReadingTime 0) }}
+  <span class="meta-sep">&middot;</span>
+  <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
+  {{ end }}
+</div>

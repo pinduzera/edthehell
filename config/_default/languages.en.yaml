@@ -8,6 +8,7 @@ copyright: "Ed The Hell"
 params:
   description: "We read and we are free."
   dateFormat: "2 January 2006"
+  dateConnector: " "
   author:
     bio:
       - "We read and we are free."
