@@ -1,0 +1,39 @@
+{{- $alt := .PlainText -}}
+{{- $title := .Title -}}
+{{- $page := .Page -}}
+{{- $src := .Destination -}}
+{{- with .Page.Resources.GetMatch .Destination -}}
+  {{- $src = .RelPermalink -}}
+{{- end -}}
+{{- $class := .Attributes.class -}}
+{{- $width := .Attributes.width -}}
+{{- $height := .Attributes.height -}}
+
+{{- /* Support a Hugo-style attribute list inside the image title, e.g.
+       ![alt](photo.webp "Caption {width=50%}"), so linked images can be
+       sized too: [![alt](photo.webp "Caption {width=50%}")](url) */ -}}
+{{- with findRE `\{[^}]*\}` $title 1 -}}
+  {{- $title = trim (replaceRE `\s*\{[^}]*\}` "" $title) " " -}}
+  {{- $attrs := replaceRE `[{}]` "" (index . 0) -}}
+  {{- range $pair := (split $attrs " ") -}}
+    {{- $kv := split $pair "=" -}}
+    {{- if eq (len $kv) 2 -}}
+      {{- $key := index $kv 0 -}}
+      {{- $value := trim (index $kv 1) `"'` -}}
+      {{- if eq $key "width" }}{{ $width = $value }}{{ end -}}
+      {{- if eq $key "height" }}{{ $height = $value }}{{ end -}}
+      {{- if eq $key "class" }}{{ $class = $value }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if .IsBlock -}}
+<figure{{ with $class }} class="{{ . }}"{{ end }}>
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async" />
+  {{- with $title }}
+  <figcaption>{{ $page.RenderString (dict "display" "inline") . }}</figcaption>
+  {{- end }}
+</figure>
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async" />
+{{- end -}}

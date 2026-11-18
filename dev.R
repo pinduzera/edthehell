@@ -3,7 +3,7 @@ options(blogdown.method = "markdown")
 options(blogdown.author = "Ed The Hell")
 options(blogdown.subdir = "posts")
 #options(blogdown.new_bundle =  TRUE)
-options(blogdown.hugo.version = "0.160.0")
+options(blogdown.hugo.version = "0.170.0")
 
 # New post: page bundle at content/posts/<year>/<month>/<slug>/index.md.
 # `file` sets the folder layout from the post date and `slug` pins the URL
