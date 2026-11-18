@@ -1,0 +1,16 @@
+{{- $external := .Params.externalUrl -}}
+{{- $internal := and $external (hasPrefix $external "/") -}}
+{{- $isExternal := and $external (not $internal) -}}
+{{- $href := .RelPermalink -}}
+{{- if $external -}}
+  {{- $href = partial "project-url.html" $external -}}
+{{- end -}}
+<a class="link-row-ext" href="{{ $href }}" {{ if $isExternal }}target="_blank" rel="noopener"{{ end }}>
+  <div class="link-row-ext-inner">
+    <span class="link-row-title"{{ if not $isExternal }} style="view-transition-name: vt-title-{{ .File.UniqueID }}"{{ end }}>{{ .Title | emojify }}{{ if .Params.discontinued }} <span class="badge">{{ i18n "discontinued" }}</span>{{ end }}</span>
+    {{- with .Params.summary }}
+    <div class="link-row-desc">{{ . }}</div>
+    {{- end }}
+  </div>
+  <span class="ext-arrow"{{ if not $isExternal }} style="visibility:hidden"{{ end }}>&#8599;</span>
+</a>

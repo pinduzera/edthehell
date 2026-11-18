@@ -74,3 +74,21 @@ sections:
 URLs (starting with `/`) stay in the same tab and get no external arrow;
 anything else opens in a new one. The Portuguese version is
 `content/cool-links.pt.md` — same structure, translated strings.
+
+## Linking a project to a page
+
+A project's `externalUrl` accepts either a full URL or a content path starting
+with `/`. Content paths are resolved with `site.GetPage`, so the link follows
+the current language automatically and keeps working when the target's slug
+changes:
+
+```yaml
+externalUrl: /posts/2026/11/the-internet
+```
+
+Use the page's content path (`content/posts/.../index.md` minus the filename),
+not its URL. The same value goes in both language files; `/posts/...` renders as
+`/posts/...` on English pages and `/pt/posts/...` on Portuguese ones. Resolved
+internal links open in the same tab and hide the external arrow. This lives in
+`layouts/partials/project-url.html`, with `project-row.html` and
+`projects/single.html` overrides using it.

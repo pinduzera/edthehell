@@ -1,0 +1,11 @@
+{{- $url := . -}}
+{{- if $url -}}
+  {{- if hasPrefix $url "/" -}}
+    {{- with site.GetPage $url -}}
+      {{- $url = .RelPermalink -}}
+    {{- else -}}
+      {{- $url = $url | relLangURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}
