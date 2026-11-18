@@ -1,7 +1,7 @@
 ---
 title: I still love the Internet
 author: Ed The Hell
-date: '2026-11-17'
+date: '2026-11-17T22:43:06-03:00'
 slug: the-internet-love
 categories: []
 tags: [start, internet, freedom, web, venting, first]
