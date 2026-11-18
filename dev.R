@@ -5,23 +5,23 @@ options(blogdown.subdir = "posts")
 #options(blogdown.new_bundle =  TRUE)
 options(blogdown.hugo.version = "0.170.0")
 
-# New post: page bundle at content/posts/<year>/<month>/<slug>/index.md.
-# `file` sets the folder layout from the post date and `slug` pins the URL
-# segment, so the permalinks config still turns it into posts/2026/11/<slug>/
-# while the date stays in front matter. Without `file`, blogdown would create
-# YYYY-MM-DD-<slug>/index.md; without `slug`, translated bundles like
-# index.pt.md fall back to the post title for the URL.
-new_post <- function(title, slug, lang = "en", date = Sys.Date(), ...) {
-  date <- as.Date(date)
+
+new_post <- function(title, slug, lang = "en", date = Sys.time(), ...) {
+  if (inherits(date, "Date")) date <- as.POSIXct(format(date, "%Y-%m-%d"))
+  stamp <- format(date, "%Y-%m-%dT%H:%M:%S%z")
+  stamp <- sub("([+-][0-9]{2})([0-9]{2})$", "\\1:\\2", stamp)
   file <- file.path(
     "posts", format(date, "%Y"), format(date, "%m"), slug,
     if (lang == "en") "index.md" else paste0("index.", lang, ".md")
   )
-  blogdown::new_post(title, file = file, slug = slug, date = date, ...)
+  args <- list(...)
+  args$time <- NULL
+  do.call(blogdown::new_post, c(list(title, file = file, slug = slug, date = stamp), args))
 }
 
 # new_post("My title", "my-slug")             # English: index.md
 # new_post("Meu título", "my-slug", "pt")     # Portuguese: index.pt.md
+# new_post("Backdated", "backdated", date = as.POSIXct("2026-11-17 09:30:00"))
 
 serve_site()
 #build_site()

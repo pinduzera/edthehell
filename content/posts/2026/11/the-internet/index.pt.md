@@ -1,7 +1,7 @@
 ---
 title: Eu ainda amo a Internet
 author: Ed The Hell
-date: '2026-11-17'
+date: '2026-11-17T22:43:06-03:00'
 slug: the-internet-love
 categories: []
 tags: [começo, internet, liberdade, web, desabafo, primeiro]
