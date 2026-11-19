@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.Language.Locale }}">
+<html lang="{{ site.Language.Locale }}" data-theme="dark">
 {{- partial "head.html" . }}
 <body>
   <div class="shell">
@@ -23,7 +23,7 @@
     function currentTheme() {
       const explicit = document.documentElement.getAttribute("data-theme");
       if (explicit) return explicit;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return "dark";
     }
 
     function renderDiagrams() {
