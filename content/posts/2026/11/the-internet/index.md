@@ -63,7 +63,7 @@ For this particular one, some nostalgia of the internet.
 
 As a final note, you are always free to contact me through [Mail me](mailto:ehellas@proton.me) section or some other way you find.
 
-For all my potential readers, I will try to sync it in two languages, but the pages my diverge of each other a little. Seem a daunting task, but
+For all my potential readers, I will try to sync it in two languages, but the pages may diverge of each other a little. Seem a daunting task, but
 I want it to be inclusive.
 
 You are all welcome.
