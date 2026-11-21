@@ -1,3 +1,4 @@
 #cache dir
 resources/_gen/images/favicon/
 public
+tools/post-cli/post
