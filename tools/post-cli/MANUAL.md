@@ -66,12 +66,16 @@ output is redirected, the tool falls back to plain `created ...` and
 | `-tags` | `[]` | Comma-separated tags. |
 | `-categories` | `[]` | Comma-separated categories. |
 | `-draft` | `false` | Add `draft: true` to the front matter. |
+| `-rmd` | `false` | Create the post as R Markdown (`index.Rmd`) instead of Markdown. |
 | `-root` | nearest `content/posts` | Posts directory. Must already exist. |
 | `-force` | `false` | Overwrite existing post files, or skip the delete confirmation. |
 | `-h` | | Print usage and exit successfully. |
 
 `-both` implies both `en` and `pt`; `-lang pt` creates only the Portuguese file.
-`-title-pt` is ignored unless a Portuguese version is produced.
+`-title-pt` is ignored unless a Portuguese version is produced. `-rmd` writes
+`index.Rmd` and `index.pt.Rmd` instead of the `.md` files and applies to
+creation only, so it cannot be combined with `-delete` or `-update-date`.
+Updating and deleting work on both extensions without extra flags.
 
 ## Updating a post's date
 
@@ -86,7 +90,8 @@ After drafting, set the publish date without recreating the post:
 
 `-date` is required. Use `-date now` to stamp the current time. The tool finds
 `YYYY/MM/<slug>/` under the posts root,
-rewrites the `date:` field in `index.md` and/or `index.pt.md`, and moves the
+rewrites the `date:` field in whichever of `index.md`, `index.pt.md`,
+`index.Rmd`, or `index.pt.Rmd` exist, and moves the
 bundle to the year and month of the new date. Missing month section indexes are
 created. Title, slug, tags, categories, and draft status are left unchanged.
 
@@ -122,6 +127,8 @@ Inside the root it creates:
 ```
 <root>/YYYY/MM/<slug>/index.md      (English)
 <root>/YYYY/MM/<slug>/index.pt.md   (Portuguese)
+<root>/YYYY/MM/<slug>/index.Rmd     (English, with -rmd)
+<root>/YYYY/MM/<slug>/index.pt.Rmd  (Portuguese, with -rmd)
 ```
 
 Year and month come from the resolved date, not the current date.
@@ -224,6 +231,12 @@ Portuguese only, with an explicit slug:
 ./post -lang pt -slug acao -date 2027-01-05 "Ação"
 ```
 
+R Markdown post (bilingual):
+
+```sh
+./post -rmd -both -title-pt "Meu documento" "My document"
+```
+
 Draft in a non-default posts directory:
 
 ```sh
@@ -257,6 +270,7 @@ runs, including `-h`, exit 0.
 | `could not derive a slug from ...; pass -slug` | Title has no letters or digits. |
 | `invalid -lang ...: use en or pt` | Unsupported language. |
 | `invalid -date ...` | Unrecognized date format. |
+| `-rmd cannot be used with -delete or -update-date` | `-rmd` only affects creation. |
 | `-update-date needs -date ...` | Update mode without a new date. |
 | `post "..." not found under ...` | No bundle with that slug. |
 | `post "..." is ambiguous: ...` | The slug exists under more than one month. |
@@ -276,8 +290,8 @@ go test ./...
 ```
 
 The suite covers slug generation, date parsing, English/Portuguese/bilingual
-output, overwrite protection, section-index preservation, help, and root
-discovery.
+output, Markdown and R Markdown bundles, overwrite protection, section-index
+preservation, help, and root discovery.
 
 ## Related reading
 

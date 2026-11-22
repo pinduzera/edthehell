@@ -166,6 +166,63 @@ func TestRunPortugueseOnly(t *testing.T) {
 	}
 }
 
+func TestRunCreatesRMarkdownPost(t *testing.T) {
+	root := t.TempDir()
+	var out bytes.Buffer
+
+	err := run([]string{
+		"-root", root,
+		"-date", "2026-11-21 10:30",
+		"-rmd",
+		"-both",
+		"-title-pt", "Meu Post",
+		"My Post",
+	}, &out)
+	if err != nil {
+		t.Fatalf("run: %v", err)
+	}
+
+	dir := filepath.Join(root, "2026", "11", "my-post")
+	english := readFile(t, filepath.Join(dir, "index.Rmd"))
+	if !strings.Contains(english, `title: "My Post"`) {
+		t.Errorf("unexpected English front matter:\n%s", english)
+	}
+	portuguese := readFile(t, filepath.Join(dir, "index.pt.Rmd"))
+	if !strings.Contains(portuguese, `title: "Meu Post"`) {
+		t.Errorf("unexpected Portuguese front matter:\n%s", portuguese)
+	}
+
+	for _, name := range []string{"index.md", "index.pt.md"} {
+		if _, err := os.Stat(filepath.Join(dir, name)); !os.IsNotExist(err) {
+			t.Errorf("%s should not exist with -rmd", name)
+		}
+	}
+
+	if !strings.Contains(out.String(), "url: /posts/2026/11/my-post/") ||
+		!strings.Contains(out.String(), "url: /pt/posts/2026/11/my-post/") {
+		t.Errorf("missing URLs in output:\n%s", out.String())
+	}
+}
+
+func TestRunRMarkdownPortugueseOnly(t *testing.T) {
+	root := t.TempDir()
+
+	if err := run([]string{"-root", root, "-lang", "pt", "-rmd", "-date", "2027-01-05", "Ação"}, &bytes.Buffer{}); err != nil {
+		t.Fatalf("run: %v", err)
+	}
+
+	dir := filepath.Join(root, "2027", "01", "acao")
+	if _, err := os.Stat(filepath.Join(dir, "index.pt.Rmd")); err != nil {
+		t.Errorf("missing Portuguese R Markdown post: %v", err)
+	}
+	if _, err := os.Stat(filepath.Join(dir, "index.pt.md")); !os.IsNotExist(err) {
+		t.Error("index.pt.md should not exist with -rmd")
+	}
+	if _, err := os.Stat(filepath.Join(dir, "index.Rmd")); !os.IsNotExist(err) {
+		t.Error("English post should not exist for -lang pt")
+	}
+}
+
 func TestRunRefusesToOverwrite(t *testing.T) {
 	root := t.TempDir()
 	args := []string{"-root", root, "-date", "2026-11-21", "My Post"}
@@ -459,6 +516,53 @@ func TestRunDeleteNonDraftRefusesWithoutInput(t *testing.T) {
 	}
 	if _, err := os.Stat(dir); !os.IsNotExist(err) {
 		t.Errorf("post was not deleted with -force: %v", err)
+	}
+}
+
+func TestRunUpdatesAndDeletesRMarkdownPost(t *testing.T) {
+	root := t.TempDir()
+	if err := run([]string{"-root", root, "-date", "2026-11-21 10:30", "-rmd", "-draft", "My Post"}, &bytes.Buffer{}); err != nil {
+		t.Fatalf("create: %v", err)
+	}
+
+	var out bytes.Buffer
+	if err := run([]string{
+		"-root", root,
+		"-update-date",
+		"-slug", "my-post",
+		"-date", "2026-12-05 09:15",
+	}, &out); err != nil {
+		t.Fatalf("update: %v", err)
+	}
+
+	dir := filepath.Join(root, "2026", "12", "my-post")
+	content := readFile(t, filepath.Join(dir, "index.Rmd"))
+	if !strings.Contains(content, "date: '2026-12-05T09:15:00") {
+		t.Errorf("date was not updated:\n%s", content)
+	}
+	if !strings.Contains(out.String(), "url: /posts/2026/12/my-post/") {
+		t.Errorf("missing URL in output:\n%s", out.String())
+	}
+
+	if err := run([]string{"-root", root, "-delete", "-slug", "my-post"}, &bytes.Buffer{}); err != nil {
+		t.Fatalf("delete: %v", err)
+	}
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		t.Errorf("R Markdown post was not deleted: %v", err)
+	}
+}
+
+func TestRunRMarkdownFlagOnlyAppliesToCreation(t *testing.T) {
+	root := t.TempDir()
+
+	for _, args := range [][]string{
+		{"-root", root, "-rmd", "-delete", "-slug", "my-post"},
+		{"-root", root, "-rmd", "-update-date", "-slug", "my-post", "-date", "2026-12-01"},
+	} {
+		err := run(args, &bytes.Buffer{})
+		if err == nil || !strings.Contains(err.Error(), "-rmd") {
+			t.Errorf("run(%v): expected an -rmd error, got %v", args, err)
+		}
 	}
 }
 

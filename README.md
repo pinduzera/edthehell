@@ -38,6 +38,9 @@ go build -o post .
 # English and Portuguese together
 ./post -both -title-pt "Meu título" -tags "go" "My title"
 
+# R Markdown post (index.Rmd instead of index.md)
+./post -rmd "My R Markdown title"
+
 # Move an existing post to a new publish date
 ./post -update-date -slug my-title -date "2026-12-05 09:15"
 
@@ -50,7 +53,8 @@ go build -o post .
 
 Run it from the repository root or anywhere inside it: it looks upwards for
 `content/posts`. Pass `-root path/to/content/posts` to override, `-draft` to
-mark it as a draft, and `-force` to overwrite an existing post. Existing
+mark it as a draft, `-rmd` to write `index.Rmd` instead of `index.md`, and
+`-force` to overwrite an existing post. Existing
 section indexes are never overwritten. On a terminal the result is rendered
 with [gum](https://github.com/charmbracelet/gum) when it is installed, and
 falls back to plain output otherwise. Run its tests with

@@ -57,6 +57,7 @@ func run(args []string, stdout io.Writer) error {
 	fs.Usage = func() {
 		fmt.Fprintln(stdout, "usage: post [flags] \"Post title\"")
 		fmt.Fprintln(stdout, "\nCreates content/posts/YYYY/MM/<slug>/index.md (and optionally index.pt.md).")
+		fmt.Fprintln(stdout, "With -rmd, creates index.Rmd (and index.pt.Rmd) instead.")
 		fmt.Fprintln(stdout, "With -update-date, moves an existing post to a new date and rewrites its front matter.")
 		fmt.Fprintln(stdout, "With -delete, removes an existing post bundle.")
 		fmt.Fprintln(stdout, "\nflags:")
@@ -75,6 +76,7 @@ func run(args []string, stdout io.Writer) error {
 	tagsArg := fs.String("tags", "", "comma-separated tags")
 	categoriesArg := fs.String("categories", "", "comma-separated categories")
 	draft := fs.Bool("draft", false, "mark the post as a draft")
+	rmd := fs.Bool("rmd", false, "create the post as R Markdown (index.Rmd) instead of Markdown")
 	rootArg := fs.String("root", "", "posts directory (default: nearest content/posts)")
 	force := fs.Bool("force", false, "overwrite existing post files")
 
@@ -92,6 +94,9 @@ func run(args []string, stdout io.Writer) error {
 
 	if *deletePost && *updateDate {
 		return errors.New("-delete and -update-date are mutually exclusive")
+	}
+	if *rmd && (*deletePost || *updateDate) {
+		return errors.New("-rmd cannot be used with -delete or -update-date")
 	}
 	if *deletePost {
 		return runDelete(ui, postTitle, *slug, *force, *rootArg)
@@ -143,7 +148,7 @@ func run(args []string, stdout io.Writer) error {
 			postTitleForLang = strings.TrimSpace(*titlePT)
 		}
 		targets = append(targets, target{
-			path:    filepath.Join(dir, filenameForLang(l)),
+			path:    filepath.Join(dir, filenameForLang(l, *rmd)),
 			content: renderPost(postTitleForLang, *author, date, postSlug, splitList(*categoriesArg), splitList(*tagsArg), *draft),
 		})
 	}
@@ -175,9 +180,9 @@ func run(args []string, stdout io.Writer) error {
 	}
 	created = append(created, sections...)
 
-	urls := []string{fmt.Sprintf("/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), postSlug)}
+	urls := []string{postURL("en", date, postSlug)}
 	if *both || *lang == "pt" {
-		urls = append(urls, fmt.Sprintf("/pt/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), postSlug))
+		urls = append(urls, postURL("pt", date, postSlug))
 	}
 
 	ui.header(postTitle, date, postSlug)
@@ -210,7 +215,7 @@ func runDelete(ui *presenter, title, slugArg string, force bool, rootArg string)
 		return err
 	}
 	if len(files) == 0 {
-		return fmt.Errorf("%s has no index.md or index.pt.md", dir)
+		return fmt.Errorf("%s has no %s", dir, postFilesHint)
 	}
 
 	draft := true
@@ -295,7 +300,7 @@ func runUpdateDate(ui *presenter, title, slugArg, dateArg, rootArg string) error
 		return err
 	}
 	if len(files) == 0 {
-		return fmt.Errorf("%s has no index.md or index.pt.md", oldDir)
+		return fmt.Errorf("%s has no %s", oldDir, postFilesHint)
 	}
 
 	updatedFiles := make([]pendingUpdate, 0, len(files))
@@ -338,11 +343,11 @@ func runUpdateDate(ui *presenter, title, slugArg, dateArg, rootArg string) error
 
 	var urls []string
 	for _, file := range files {
-		switch filepath.Base(file.path) {
-		case "index.md":
-			urls = append(urls, fmt.Sprintf("/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), postSlug))
-		case "index.pt.md":
-			urls = append(urls, fmt.Sprintf("/pt/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), postSlug))
+		switch langOfPostFile(filepath.Base(file.path)) {
+		case "en":
+			urls = append(urls, postURL("en", date, postSlug))
+		case "pt":
+			urls = append(urls, postURL("pt", date, postSlug))
 		}
 	}
 
@@ -406,7 +411,7 @@ func digits(s string, n int) bool {
 
 func readPostFiles(dir string) ([]target, error) {
 	var files []target
-	for _, name := range []string{"index.md", "index.pt.md"} {
+	for _, name := range postFileNames {
 		path := filepath.Join(dir, name)
 		data, err := os.ReadFile(path)
 		if errors.Is(err, os.ErrNotExist) {
@@ -454,11 +459,36 @@ func withFrontMatterDate(content string, date time.Time) (string, error) {
 	return strings.Join(lines, ""), nil
 }
 
-func filenameForLang(lang string) string {
-	if lang == "pt" {
-		return "index.pt.md"
+func filenameForLang(lang string, rmd bool) string {
+	ext := ".md"
+	if rmd {
+		ext = ".Rmd"
 	}
-	return "index.md"
+	if lang == "pt" {
+		return "index.pt" + ext
+	}
+	return "index" + ext
+}
+
+var postFileNames = []string{"index.md", "index.Rmd", "index.pt.md", "index.pt.Rmd"}
+
+const postFilesHint = "index.md, index.Rmd, index.pt.md or index.pt.Rmd"
+
+func langOfPostFile(name string) string {
+	switch name {
+	case "index.md", "index.Rmd":
+		return "en"
+	case "index.pt.md", "index.pt.Rmd":
+		return "pt"
+	}
+	return ""
+}
+
+func postURL(lang string, date time.Time, slug string) string {
+	if lang == "pt" {
+		return fmt.Sprintf("/pt/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), slug)
+	}
+	return fmt.Sprintf("/posts/%s/%s/%s/", date.Format("2006"), date.Format("01"), slug)
 }
 
 func renderPost(title, author string, date time.Time, slug string, categories, tags []string, draft bool) string {
