@@ -1,0 +1,16 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $href := .Get "href" -}}
+{{- $width := .Get "width" -}}
+{{- $caption := .Get "caption" -}}
+{{- with .Page.Resources.GetMatch $src -}}
+  {{- $src = .RelPermalink -}}
+{{- end -}}
+<figure>
+  <a href="{{ $href | safeURL }}" target="_blank" rel="noopener">
+    <img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $width }} width="{{ . }}"{{ end }} loading="lazy" decoding="async">
+  </a>
+  {{- with $caption }}
+  <figcaption>{{ $.Page.RenderString (dict "display" "inline") . }}</figcaption>
+  {{- end }}
+</figure>
