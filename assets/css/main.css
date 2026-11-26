@@ -882,6 +882,18 @@ h4 {
         overflow-y: visible;
     }
 
+    .shell {
+        --toc-content-w: var(--content-w);
+    }
+
+    .shell:has(.content-wide) {
+        --toc-content-w: var(--content-w-wide);
+    }
+
+    .toc {
+        right: max(1rem, calc(var(--toc-gutter) - 200px - 2rem + max(0px, (100vw - var(--sidebar-w) - var(--toc-gutter) - var(--toc-content-w)) / 2)));
+    }
+
     .toc.toc-pinned {
         top: 4rem;
     }
