@@ -73,6 +73,7 @@ input {
     --footer-text: #4a453c;
     --tag-bg: #1e1a15;
     --badge-text: #d98a63;
+    --link: #d98a63;
 
     --sidebar-w: 320px;
     --toc-gutter: 250px;
@@ -99,6 +100,7 @@ input {
     --footer-text: #9e9992;
     --tag-bg: #f1ece4;
     --badge-text: #a85c3c;
+    --link: #a85c3c;
 }
 
 /* -- Base -- */
@@ -1040,15 +1042,24 @@ h4 {
 }
 
 .prose a {
-    color: var(--text);
+    color: var(--link);
     text-decoration: underline;
-    text-decoration-color: var(--border);
+    text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent);
     text-underline-offset: 2px;
     transition: text-decoration-color 0.15s ease;
 }
 
 .prose a:hover {
     text-decoration-color: currentColor;
+}
+
+.prose mark {
+    background: color-mix(in srgb, var(--link) 25%, transparent);
+    color: var(--text);
+}
+
+::selection {
+    background: color-mix(in srgb, var(--link) 35%, transparent);
 }
 
 .prose ul,
