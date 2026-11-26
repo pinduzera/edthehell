@@ -863,6 +863,22 @@ h4 {
     transition: top 0.35s ease;
 }
 
+.toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toc-item > .toc-list {
+    margin-top: 0.5rem;
+    padding-left: 0.85rem;
+    gap: 0.25rem;
+}
+
+.toc-item > .toc-list .toc-link {
+    font-size: 0.7rem;
+}
+
 .toc-indicator {
     position: absolute;
     left: -1px;

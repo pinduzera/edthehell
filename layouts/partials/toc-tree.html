@@ -1,0 +1,24 @@
+{{- $min := .min | default 2 -}}
+{{- $max := .max | default 4 -}}
+{{- $items := slice -}}
+{{- range .headings -}}
+  {{- if lt .Level $min -}}
+    {{- /* Container level above the configured range (a markdown h1, say):
+           lift its children into this list instead of rendering it. */ -}}
+    {{- with .Headings }}{{ $items = $items | append . }}{{ end -}}
+  {{- else if le .Level $max -}}
+    {{- $items = $items | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $items }}
+<ul class="toc-list">
+  {{- range . }}
+  <li class="toc-item">
+    <a href="#{{ .ID }}" class="toc-link toc-h{{ .Level }}">{{ .Title | emojify }}</a>
+    {{- with .Headings }}
+    {{- partial "toc-tree.html" (dict "headings" . "min" $min "max" $max) }}
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>
+{{- end -}}

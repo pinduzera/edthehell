@@ -1,0 +1,10 @@
+{{- $headings := .Fragments.Headings -}}
+{{- if $headings }}
+<button type="button" id="toc-toggle" class="toc-toggle" aria-label="{{ i18n "tableOfContents" }}" aria-expanded="false" aria-controls="toc">
+  {{ partial "icon.html" "list" }}
+</button>
+<nav class="toc" id="toc">
+  <span class="toc-indicator" aria-hidden="true"></span>
+  {{ partial "toc-tree.html" (dict "headings" $headings) }}
+</nav>
+{{- end -}}
