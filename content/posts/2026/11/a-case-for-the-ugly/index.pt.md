@@ -4,7 +4,7 @@ author: "Ed The Hell"
 date: '2026-11-26T21:08:57-03:00'
 slug: a-case-for-the-ugly
 categories: []
-tags: ["design", "boardgames", "gaming", "ascii", "venting"]
+tags: ["design", "boardgames", "gaming", "ascii", "desabafo"]
 ---
 
 > Sinto muito, leitor, mas não estou aqui para te defender, até porque você não é feio.
