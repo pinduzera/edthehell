@@ -1,7 +1,7 @@
 ---
 title: "A case for the ugly"
 author: "Ed The Hell"
-date: '2026-11-24T18:46:11-03:00'
+date: '2026-11-26T21:08:57-03:00'
 slug: a-case-for-the-ugly
 categories: []
 tags: ["design", "boardgames", "gaming", "ascii", "venting"]
