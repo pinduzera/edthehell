@@ -1090,6 +1090,33 @@ h4 {
     background: color-mix(in srgb, var(--link) 35%, transparent);
 }
 
+.prose .footnotes {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.prose .footnotes hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 0 0 1.25rem;
+}
+
+.prose .footnotes ol {
+    padding-left: 1.2rem;
+}
+
+.prose .footnote-ref {
+    font-size: 0.7em;
+    padding-left: 0.1em;
+}
+
+.prose .footnote-backref {
+    text-decoration: none;
+    color: var(--link);
+}
+
 .prose ul,
 .prose ol {
     padding-left: 1.4rem;
